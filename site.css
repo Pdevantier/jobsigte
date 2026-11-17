@@ -1,0 +1,50 @@
+/* Fælles for alle sider: Product Request-farver, Geist, topbjælke med faner og bund */
+@font-face { font-family: "Geist"; src: url("fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("fonts/GeistMono-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+:root {
+  --forest: #0F3D33; --forest-2: #2C4A41; --green: #1E8E6E; --green-2: #17775B; --mint: #7FE0B8;
+  --sage: #A9C4B8; --mist: #EEF3EF; --line: #D5DFD9; --slate: #43584F;
+  --bg: #FFFFFF; --surface: #F4F7F5; --fg: #0F2A24; --muted: #4F6159; --link: #17775B;
+  --hero-bg: #0F3D33; --hero-fg: #F2F7F4; --hero-muted: #B9CFC5;
+  --card: #FFFFFF; --card-fg: #0F2A24; --chip: #E3EFE9; --chip-fg: #17614C;
+  --display: "Geist", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --body: "Geist", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0B1915; --surface: #11241F; --fg: #E6EFEA; --muted: #A3B8AE; --link: #7FE0B8; --line: #24423A;
+  --hero-bg: #0A2C25; --hero-fg: #F2F7F4; --hero-muted: #A9C4B8;
+  --card: #132A24; --card-fg: #E6EFEA; --chip: #1B3A32; --chip-fg: #9FE8C9; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0B1915; --surface: #11241F; --fg: #E6EFEA; --muted: #A3B8AE; --link: #7FE0B8; --line: #24423A;
+  --hero-bg: #0A2C25; --hero-fg: #F2F7F4; --hero-muted: #A9C4B8;
+  --card: #132A24; --card-fg: #E6EFEA; --chip: #1B3A32; --chip-fg: #9FE8C9; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+img { max-width: 100%; display: block; }
+
+/* topbjælke */
+.site { background: var(--hero-bg); color: var(--hero-fg); border-bottom: 1px solid rgba(127,224,184,.14); }
+.site .in { max-width: 1040px; margin: 0 auto; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 14px max(16px, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--hero-fg); text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.brand svg { width: 46px; height: 20px; flex: none; }
+.brand:focus-visible, .tabs a:focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; border-radius: 6px; }
+.tabs { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.tabs a { display: block; color: var(--hero-muted); text-decoration: none; font-size: 15px; font-weight: 500; padding: 8px 12px; border-radius: 999px; white-space: nowrap; }
+.tabs a:hover { color: var(--hero-fg); background: rgba(255,255,255,.06); }
+.tabs a[aria-current="page"] { color: var(--forest); background: var(--mint); }
+@media (max-width: 600px) {
+  .site .in { gap: 10px; }
+  .tabs { width: 100%; justify-content: space-between; }
+  .tabs a { font-size: 14px; padding: 7px 10px; }
+}
+
+/* bund */
+.foot { border-top: 1px solid var(--line); }
+.foot .in { max-width: 1040px; margin: 0 auto; padding: 28px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px));
+  display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.foot a { color: var(--link); }
