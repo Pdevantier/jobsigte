@@ -131,7 +131,7 @@ section + section { border-top: 1px solid var(--line); }
 [hidden] { display: none !important; }
 .videorow { display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; align-items: center; }
 .video { margin: 0; display: grid; gap: 8px; }
-.video video, .videoph { width: 100%; aspect-ratio: 16 / 10; border-radius: 14px; background: var(--surface); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
+.video video, .videoph { width: 100%; aspect-ratio: 1280 / 620; border-radius: 14px; background: var(--surface); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
 .videoph { display: grid; place-items: center; color: var(--muted); border: 1.5px dashed var(--line); box-shadow: none; }
 .video figcaption { font-size: 13px; color: var(--muted); }
 dialog#fakedoor { max-width: 520px; width: calc(100% - 32px); border: 0; border-radius: 18px; padding: 28px; background: var(--bg); color: var(--fg); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
@@ -218,7 +218,7 @@ footer { padding-block: 28px 40px; font-size: 13px; color: var(--muted); }
     <figure class="video">
       <video id="demoVideo" src="demo.mp4" poster="demo-forside.png" controls muted playsinline preload="metadata" hidden></video>
       <div class="videoph" id="videoPh">Video af arbejdsbordet kommer her</div>
-      <figcaption>Demo med opdigtede data.</figcaption>
+      <figcaption>Demo med opdigtede data. Uden lyd.</figcaption>
     </figure>
   </div>
 </section>
@@ -491,7 +491,7 @@ Start nu med Trin 1.</textarea>
 // ---- Indstillinger: udfyld, når du har dem ----
 var VENTELISTE_URL = "";   // Google-formularen til ventelisten, fx "https://forms.gle/..."
 var SNAK_URL = "https://forms.gle/sQ59zSkdE2tC39Fy8";  // tilmelding til en snak (fra piloten)
-var VIDEO_KLAR = false;    // sæt til true, når demo.mp4 og demo-forside.png er uploadet
+var VIDEO_KLAR = true;     // sæt til true, når demo.mp4 og demo-forside.png er uploadet
 // -----------------------------------------------
 function taelKlik(navn) {  // GoatCounter tæller klik uden cookies; gør intet, hvis det ikke er sat op
   try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "klik-" + navn, title: navn, event: true }); } catch (e) {}
