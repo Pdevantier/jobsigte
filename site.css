@@ -29,7 +29,7 @@ img { max-width: 100%; display: block; }
 /* topbjælke */
 .site { background: var(--hero-bg); color: var(--hero-fg); border-bottom: 1px solid rgba(127,224,184,.14); }
 .site .in { max-width: 1040px; margin: 0 auto; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 14px max(16px, env(safe-area-inset-left, 0px));
-  display: flex; align-items: center; justify-content: flex-start; gap: 16px; flex-wrap: wrap; }
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--hero-fg); text-decoration: none; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
 .brand svg { width: 46px; height: 20px; flex: none; }
 .brand:focus-visible, .tabs a:focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; border-radius: 6px; }
