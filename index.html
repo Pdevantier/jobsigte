@@ -126,6 +126,7 @@ section + section { border-top: 1px solid var(--line); }
 .today .later .st { color: var(--muted); }
 .today h3 { font-size: 20px; }
 .today p { color: var(--muted); font-size: 15.5px; }
+.today .abon { font-size: 14px; }
 .today a { font-weight: 600; font-size: 15px; margin-top: 4px; }
 .more { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; border-radius: 18px; padding: 28px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
 .more h2 { margin: 6px 0 8px; }
@@ -134,6 +135,7 @@ section + section { border-top: 1px solid var(--line); }
 .tool details { border-top: 1px solid var(--line); }
 .tool summary { cursor: pointer; padding: 14px 20px; font-weight: 600; font-size: 15px; color: var(--link); }
 .tool pre { margin: 0; padding: 16px 20px 20px; white-space: pre-wrap; word-break: break-word; font: 13px/1.6 var(--mono); color: var(--card-fg); background: var(--card); max-height: 420px; overflow: auto; border-top: 1px solid var(--line); }
+.hero .art { width: 100%; max-width: 360px; justify-self: end; }
 .story { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: start; }
 .story p + p { margin-top: 12px; }
 
@@ -163,6 +165,7 @@ footer { padding-block: 28px 40px; font-size: 13px; color: var(--muted); }
 @media (max-width: 900px) {
   .hero .wrap, .story, .signup, .two, .chipgroups, .videorow, .today { grid-template-columns: minmax(0,1fr); }
   .hero .wrap > * { min-width: 0; }
+  .hero .art { justify-self: start; max-width: 140px; order: -1; margin-bottom: -8px; }
   .five { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
 }
@@ -176,7 +179,7 @@ footer { padding-block: 28px 40px; font-size: 13px; color: var(--muted); }
 
 </head>
 <body>
-<header class="site"><div class="in"><a class="brand" href="#" aria-label="Jobsigte – til toppen"><svg viewBox="0 0 140 60" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M4 9H28C54 9 64 30 102 30"/><path d="M4 51H28C54 51 64 30 102 30"/><path d="M4 30H118"/></g><circle cx="127" cy="30" r="12" fill="#7FE0B8"/></svg><span>Jobsigte</span></a><nav aria-label="Hovedmenu"><ul class="tabs"><li><a href="#jobrapporten">Jobrapporten</a></li><li><a href="#arbejdsbordet">Arbejdsbordet</a></li><li><a href="prompts.html">Prompts</a></li></ul></nav></div></header>
+<header class="site"><div class="in"><a class="brand" href="#" aria-label="Jobsigte – til toppen"><svg viewBox="0 0 140 60" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M4 9H28C54 9 64 30 102 30"/><path d="M4 51H28C54 51 64 30 102 30"/><path d="M4 30H118"/></g><circle cx="127" cy="30" r="12" fill="#7FE0B8"/></svg><span>Jobsigte</span></a><nav aria-label="Hovedmenu"><ul class="tabs"><li><a href="jobrapport.html">Jobrapporten</a></li><li><a href="#arbejdsbordet">Arbejdsbordet</a></li><li><a href="prompts.html">Prompts</a></li></ul></nav></div></header>
 <header class="hero">
   <div class="wrap">
     <div>
@@ -184,52 +187,25 @@ footer { padding-block: 28px 40px; font-size: 13px; color: var(--muted); }
       <h1 id="vH1">Hold fast i jobsøgningen. <em>Brug tiden på mennesker.</em></h1>
       <p class="sub" id="vSub">Jobsøgning er mange tråde: opslag, frister, ansøgninger og folk, du skal ringe til. Opfølgningen glider let, og tiden går med at holde styr på det hele. Start i dag med en gratis jobrapport, der holder øje med opslag og frister. Arbejdsbordet til din opfølgning er på vej.</p>
       <div class="ctas">
-        <a class="btn primary" href="#prompt" data-count="kom-i-gang" id="vBtn">Start med jobrapporten</a>
-        <button class="btn ghost" type="button" data-fakedoor="hero">Prøv arbejdsbordet</button>
+        <a class="btn primary" href="#arbejdsbordet" data-count="hero-se-arbejdsbordet" id="vBtn">Se arbejdsbordet</a>
+        <a class="btn ghost" href="jobrapport.html" data-count="hero-gratis-jobrapport" id="vSekA">Start med den gratis jobrapport</a>
+        <button class="btn ghost" type="button" data-fakedoor="hero" id="vSekB" hidden>Prøv arbejdsbordet</button>
       </div>
-      <p class="meta">Kræver et betalt abonnement på ChatGPT eller Claude · Opsætning: 20–30 minutter</p>
     </div>
 
-    <div class="report" aria-label="Eksempel på en jobrapport">
-      <div class="bar"><span><b>Dagens jobrapport</b> · tirsdag kl. 07.00</span><span class="tag">Eksempel</span></div>
-      <div class="body">
-        <div>
-          <div class="rlabel">Siden sidst</div>
-          <p class="since">Jeg gennemgik 64 opslag – 9 levede op til dine krav, heraf 4 nye. 2 frister udløber denne uge. Konsulenthuse er nedprioriteret efter din feedback.</p>
-        </div>
-        <div>
-          <div class="rlabel">Bedste match</div>
-          <div class="best">
-            <div class="score">9</div>
-            <div>
-              <h4>Projektleder, digital kundeservice</h4>
-              <div class="where">Eksempel Forsyning A/S · Aarhus · frist 21.11.</div>
-              <p class="why">Rammer din erfaring med forandringsprojekter og dit ønske om hybridarbejde.</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="rlabel">Dagens match · 9</div>
-          <div class="rows">
-            <div class="row"><span class="s">9</span><span class="t">Projektleder, digital kundeservice <small>· Aarhus</small></span><span class="d">21.11</span></div>
-            <div class="row"><span class="s">8</span><span class="t">Teamleder, drift og service<span class="new">NY</span> <small>· Skanderborg</small></span><span class="d">28.11</span></div>
-            <div class="row"><span class="s">8</span><span class="t">Senior forretningsudvikler <small>· Horsens</small></span><span class="d">ikke oplyst</span></div>
-            <div class="row"><span class="s">7</span><span class="t">Udviklingskonsulent<span class="new">NY</span> <small>· Remote</small></span><span class="d">02.12</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <svg class="art" viewBox="0 0 250 200" aria-hidden="true" focusable="false"><g fill="none" stroke-width="4.5" stroke-linecap="round"><path stroke="#A9C4B8" d="M8 20H52C100 20 112 100 172 100"/><path stroke="#7FE0B8" d="M8 60H72C114 60 124 100 172 100"/><path stroke="#F2F7F4" d="M8 100H186"/><path stroke="#7FE0B8" d="M8 140H72C114 140 124 100 172 100"/><path stroke="#A9C4B8" d="M8 180H52C100 180 112 100 172 100"/></g><circle cx="210" cy="100" r="25" fill="#1E8E6E"/></svg>
   </div>
 </header>
 <script>
-// A/B-test af budskabet. Kun overskrift, indledning og knaptekst skifter.
+// A/B-test af budskabet. Overskrift, indledning og knapperne i toppen skifter.
+// A: primær knap til arbejdsbordet, sekundær til jobrapporten. B: primær til jobrapporten, sekundær "Prøv arbejdsbordet".
 var VARIANTER = {
   a: { h1: 'Hold fast i jobsøgningen. <em>Brug tiden på mennesker.</em>',
        sub: 'Jobsøgning er mange tråde: opslag, frister, ansøgninger og folk, du skal ringe til. Opfølgningen glider let, og tiden går med at holde styr på det hele. Start i dag med en gratis jobrapport, der holder øje med opslag og frister. Arbejdsbordet til din opfølgning er på vej.',
-       btn: 'Start med jobrapporten' },
+       btn: 'Se arbejdsbordet', href: '#arbejdsbordet', count: 'hero-se-arbejdsbordet' },
   b: { h1: 'Find de job, der er <em>værd at bruge tid på</em>',
        sub: 'Der er mange opslag, og det tager tid at læse og vurdere dem. Den gratis jobrapport gennemgår dem for dig. Du får de bedste match med en score og en begrundelse. Så kan tiden gå til netværk og virksomheder.',
-       btn: 'Få din første jobrapport' }
+       btn: 'Få din første jobrapport', href: 'jobrapport.html', count: 'hero-forste-jobrapport' }
 };
 var VARIANT = (function () {
   var m = /[?&]v=(a|b)(&|$)/i.exec(location.search);
@@ -246,7 +222,10 @@ var VARIANT = (function () {
   var t = VARIANTER[VARIANT];
   document.getElementById('vH1').innerHTML = t.h1;
   document.getElementById('vSub').textContent = t.sub;
-  document.getElementById('vBtn').textContent = t.btn;
+  var b1 = document.getElementById('vBtn');
+  b1.textContent = t.btn; b1.setAttribute('href', t.href); b1.setAttribute('data-count', t.count);
+  document.getElementById('vSekA').hidden = VARIANT !== 'a';
+  document.getElementById('vSekB').hidden = VARIANT !== 'b';
   document.documentElement.setAttribute('data-variant', VARIANT);
 })();
 </script>
@@ -261,207 +240,11 @@ var VARIANT = (function () {
     <div class="today">
       <div class="now"><span class="st">Trin 1 · findes nu · gratis</span><h3>Jobrapporten</h3>
         <p>En opsætning til ChatGPT eller Claude. Den finder, scorer og forklarer de opslag, der passer til dig. Den holder øje med frister og med de stillinger, du har søgt.</p>
-        <a href="#jobrapporten">Se jobrapporten</a></div>
+        <p class="abon">Kræver et betalt abonnement på ChatGPT eller Claude, fordi rapporten skal kunne køre på et fast tidspunkt. Opsætning: 20–30 minutter.</p>
+        <a href="jobrapport.html">Se jobrapporten</a></div>
       <div class="later"><span class="st">Trin 2 · på venteliste</span><h3>Arbejdsbordet</h3>
         <p>En to-do-liste, hvor opgaverne bliver stående, til de er klaret. Hver stilling har sine opgaver, noter og kontaktpersoner samlet ét sted.</p>
         <a href="#arbejdsbordet">Se arbejdsbordet</a></div>
-    </div>
-  </div>
-</section>
-
-<section id="jobrapporten">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Trin 1 · jobrapporten · findes nu</p>
-      <h2>En rapport i fem dele – i den samme chat hver gang</h2>
-      <p class="lead">Rapporten kommer, så ofte du vælger, og viser kun stillinger, der lever op til dine krav: hellere 9 gode end 20 halve. Hver stilling får en score fra 1 til 10 med en kort begrundelse, og du kan se, hvor mange opslag der blev gennemgået for at finde dem.</p>
-    </div>
-    <div class="five">
-      <div><b>Siden sidst</b><span>Hvad der er nyt, og hvad der er justeret efter din feedback</span></div>
-      <div><b>Bedste match</b><span>Dagens bedste stilling og hvorfor den passer</span></div>
-      <div><b>Nærmeste frister</b><span>Det, du skal nå inden for en uge</span></div>
-      <div><b>Dagens match</b><span>Op til 20, scoret fra 1 til 10 og markeret ny eller set før</span></div>
-      <div><b>3 artikler</b><span>Aktuel læsning om din branche eller jobsøgning</span></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Opsætning</p>
-      <h2>Fire trin, og så kører den</h2>
-    </div>
-    <ol class="steps">
-      <li><h3>Åbn en ny chat</h3><p>I ChatGPT eller Claude. Hele jobsøgningen kommer til at bo i den chat.</p></li>
-      <li><h3>Indsæt prompten</h3><p>Svar på 12 spørgsmål om branche, rolle, løn, geografi og drømmejob, og upload 2–3 CV'er og ansøgninger.</p></li>
-      <li><h3>Planlæg kørslen</h3><p>Brug værktøjets Schedule-funktion i samme chat med den tekst, chatten giver dig.</p></li>
-      <li><h3>Giv feedback</h3><p>Skriv frit, fx "nr. 3 nej – for junior". Næste rapport tager højde for det.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section id="prompt">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Opsætningsprompten</p>
-      <h2>Kopiér prompten og sæt den ind i en ny chat</h2>
-      <p class="lead">Prompten stiller spørgsmålene ét par ad gangen, laver et profilkort, som du godkender, og kører din første rapport med det samme.</p>
-    </div>
-    <div class="promptbox">
-      <div class="promptbar">
-        <span>Hele teksten skal med</span>
-        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-          <span class="status" id="promptStatus" role="status"></span>
-          <button class="btn solid" id="copyPrompt" type="button">Kopiér prompten</button>
-        </div>
-      </div>
-      <textarea id="promptText" readonly aria-label="Opsætningsprompt">Du er min personlige jobsøgningsassistent. Vi skal sætte en daglig jobrapport op her i denne chat. Bagefter bruger jeg den samme chat til tre ting: de løbende rapporter, min feedback på stillingerne og hjælp til CV og ansøgninger. Skriv på det sprog, jeg skriver på.
-
-Følg trinene i rækkefølge, og gå ikke videre, før det forrige trin er færdigt.
-
-## Trin 1 – Interview
-
-Stil mig spørgsmålene nedenfor. Stil højst 2–3 ad gangen, og vis eksemplerne, så jeg ved, hvad du er ude efter. Spørg kort ind, hvis et svar er uklart eller for bredt. Vil jeg ikke svare, så skriv "ikke angivet" og fortsæt.
-
-1. **Hvilken branche søger du job i?**
-   Fx IT og software, energi og forsyning, finans, offentlig forvaltning, sundhed og life science, detail og e-handel, industri og produktion. Du må gerne nævne flere og prioritere dem.
-
-2. **Hvilken type job søger du – og på hvilket niveau?**
-   Fx "projektleder", "salgschef", "UX-designer", "økonomimedarbejder". Niveau fx: specialist, senior, teamleder, chef/direktør. Nævn også jobtitler, du *ikke* vil have.
-
-3. **Upload 2–3 gode eksempler på dit CV og dine ansøgninger.**
-   Gerne de versioner, du er mest tilfreds med. Jeg bruger dem til at forstå din erfaring og til at matche dig med opslag. Fjern gerne CPR-nummer og andre følsomme oplysninger først.
-
-4. **Hvor søger du job geografisk – og hvordan vil du arbejde?**
-   Fx "Storkøbenhavn", "Aarhus + 45 min.", "hele Danmark", "remote fra Danmark". Angiv gerne max transporttid og om du ønsker hjemmearbejde, hybrid eller fuldt fremmøde.
-
-5. **Hvad er din lønforventning?**
-   - Ønsket løn pr. måned (interval) og om det er inkl. eller ekskl. pension. Fx "55–62.000 kr. ekskl. pension".
-   - Laveste løn, du vil acceptere.
-   - Er løn vigtigere end fx titel, fleksibilitet eller branche – eller omvendt?
-
-6. **Hvilke ansættelsesvilkår og ufravigelige krav har du?**
-   Fx fast stilling eller også vikariat/freelance, fuldtid eller deltid, maks. rejsedage, personaleansvar ja/nej, sprogkrav, ingen vagter eller weekendarbejde. Skeln mellem "skal" og "gerne".
-
-7. **Hvilke kilder vil du prioritere til jobannoncer?**
-   Fx Jobindex, LinkedIn Jobs, Jobnet, Akademikernes Jobbank, Ofir, The Hub, Graduateland, branchens egne jobsider eller udvalgte virksomheders karrieresider.
-
-8. **Hvor ofte vil du have en rapport med relevante jobopslag?**
-   Fx hver hverdag kl. 7, mandag/onsdag/fredag eller én gang om ugen.
-
-9. **Upload andet relevant materiale, der kan hjælpe med at matche dig.**
-   Fx din LinkedIn-profil som PDF, eksamensbeviser, kursusbeviser, personlighedstest, anbefalinger, porteføljeeksempler eller en kort beskrivelse af resultater, du er stolt af.
-
-10. **Er der virksomheder, du ikke vil arbejde for?**
-    Fx tidligere arbejdsgivere, konkurrenter til din nuværende arbejdsgiver eller brancher, du fravælger af etiske grunde.
-
-11. **Er der virksomheder, du særligt gerne vil arbejde for?**
-    Fx 5–10 navne. Fortæl gerne kort hvorfor – det hjælper med at finde lignende virksomheder.
-
-12. **Beskriv dit drømmejob.**
-    Fx opgaverne, kollegerne, ledelsesstilen, virksomhedens mission, hvad du vil lære, og hvad en god arbejdsdag består af. Det må gerne være et par afsnit.
-
-## Trin 2 – Profilkort
-
-Når interviewet er færdigt, så skriv et **PROFILKORT** med overskriften `PROFILKORT` og disse punkter: branche, rolle og niveau, uønskede titler, geografi og arbejdsform, løn (ønsket, laveste, prioritet), vilkår og ufravigelige krav, kilder, frekvens, fravalgte virksomheder, ønskevirksomheder, drømmejob (3–5 linjer), styrker og erfaring fra mit materiale (5–8 punkter), samt scoringsreglerne nedenfor.
-
-Bed mig bekræfte eller rette profilkortet. Når jeg har bekræftet det, er det grundlaget for alle rapporter.
-
-**Scoringsregler (1–10)**
-- **9–10:** Rammer rolle, niveau, branche og geografi. Ingen ufravigelige krav brudt. Ligger tæt på drømmejobbet eller er en ønskevirksomhed.
-- **7–8:** Godt match med én mindre afvigelse (fx lidt længere transport eller nabobranche).
-- **5–6:** Delvist match – flere afvigelser eller vigtige oplysninger mangler i opslaget.
-- **1–4:** Vises ikke.
-- Et brudt ufravigeligt krav eller en fravalgt virksomhed betyder, at stillingen aldrig vises.
-- Løn: Er løn oplyst og under min laveste løn, vises stillingen ikke. Er løn ikke oplyst, skriv "løn ikke oplyst" – gæt aldrig på et beløb.
-- Min feedback i chatten vejer tungere end profilkortet. Justér scoringen efter den.
-
-## Trin 3 – Første rapport
-
-Lav den første rapport med det samme efter formatet nedenfor.
-
-## Rapportformat (bruges hver gang)
-
-1. **Siden sidst** – 2–4 sætninger: hvor mange opslag du gennemgik, og hvor mange der levede op til mine krav (fx "Jeg gennemgik 64 opslag – 9 levede op til dine krav"), hvor mange der er nye, frister der snart udløber, og hvad du har justeret efter min feedback. Første gang: start med en kort velkomst.
-2. **Bedste match** – én stilling: titel, virksomhed, sted, frist, løn (hvis oplyst), score, 2–3 linjer om hvorfor den passer, ét punkt jeg skal være opmærksom på, og link.
-3. **Nærmeste frister** – stillinger med score 6 eller højere og frist inden for 7 dage, sorteret efter frist.
-4. **Dagens match (op til 20)** – en tabel sorteret efter score: nr., score, titel, virksomhed, sted, frist, ny/set før, én linjes begrundelse, link.
-5. **3 artikler** – aktuelle artikler om min branche, rolle eller jobsøgning, med link og én linje om, hvorfor de er værd at læse.
-6. **STATUSBLOK** – se nedenfor.
-
-**Kvalitetsregler**
-- Søg på nettet ved hver kørsel. Brug mine prioriterede kilder først, men søg også bredt.
-- Søg grundigt, før du konkluderer, at der er få match: søg i hver af mine prioriterede kilder og på mindst 2–3 beslægtede jobtitler og nærliggende områder. Tæl, hvor mange opslag du har gennemgået.
-- Vis kun rigtige opslag med et link, du har fundet eller bekræftet ved denne kørsel. Opfind aldrig stillinger, virksomheder, frister, lønniveauer eller links.
-- Kender du ikke fristen, så skriv "ikke oplyst". Fjern stillinger, hvis frist er overskredet.
-- Samme stilling på flere sider vises én gang – helst med linket til virksomhedens egen side.
-- Vis kun stillinger med score 5 eller højere – højst 20. Findes der færre, så vis færre. Fyld aldrig op med dårlige match.
-- Marker stillinger som "ny" eller "set før" ud fra statusblokken.
-
-**STATUSBLOK** (skrives sidst i hver rapport i en kodeblok, så den er let at finde)
-
-```
-STATUSBLOK – [dato]
-Vist (seneste 14 dage): titel | virksomhed | frist | score | først set
-Fravalgt af mig: titel | virksomhed | grund
-Lært af min feedback: kort punktliste
-Kommende frister: titel | virksomhed | frist
-Søgt / i gang: titel | virksomhed | status
-```
-
-## Feedback og hjælp i chatten
-
-- Når jeg giver feedback som "nr. 4 nej – for junior" eller "flere i Aarhus", så bekræft i én linje, hvad du ændrer, og tag det med i næste statusblok.
-- Når jeg skriver "jeg overvejer nr. X", så lav en kort match-analyse: de 5 vigtigste krav i opslaget → bevis fra mit materiale → huller → din anbefaling (søg / søg ikke) og vinkel.
-- Når jeg beder om CV eller ansøgning til en stilling:
-  - Brug kun fakta fra mit materiale og mine svar. Opfind aldrig resultater, tal, titler, ansvar eller kompetencer. Mangler der bevis, så spørg mig.
-  - Skeln mellem det, jeg selv har gjort, og det, teamet har gjort.
-  - CV: max 2 sider, med en kort profil og 3–5 resultater valgt efter stillingen. Ansøgning: max 1 side, motivation specifik for virksomheden, 2–3 eksempler der rammer deres behov – genfortæl ikke CV'et.
-  - Sproget følger jobopslaget.
-- Når jeg skriver **"Lav flyttepakke"**, så skriv en samlet tekst med profilkortet, seneste statusblok og en kort instruktion, som jeg kan indsætte i en ny chat for at fortsætte.
-
-## Trin 4 – Planlægning
-
-Når den første rapport er lavet, så fortæl mig, at jeg nu skal oprette en planlagt opgave (Schedule) **i denne chat** med den frekvens, jeg valgte i spørgsmål 8, og giv mig denne tekst i en kodeblok, som jeg skal bruge:
-
-```
-Kør dagens jobrapport efter PROFILKORTET i denne chat. Læs først den seneste STATUSBLOK og al feedback, jeg har givet siden. Søg på nettet efter nye opslag, og følg rapportformatet og kvalitetsreglerne præcist. Slut med en opdateret STATUSBLOK.
-```
-
-Fortæl også, at hvis planlægning ikke virker i mit værktøj, kan jeg bare skrive "Dagens jobrapport" i chatten, når jeg vil have en ny rapport.
-
-Start nu med Trin 1.</textarea>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">I hverdagen</p>
-      <h2>Korte beskeder, du kan skrive i chatten</h2>
-      <p class="lead">Klik for at kopiere. Ret tallet, så det passer til din rapport.</p>
-    </div>
-    <div class="chipgroups">
-      <div><h3>Feedback på stillinger</h3><div class="chips">
-        <button class="chipbtn" type="button">Nr. 3 nej – for junior</button>
-        <button class="chipbtn" type="button">Nr. 7 er spot on, find flere som den</button>
-        <button class="chipbtn" type="button">Færre konsulenthuse, flere i Aarhus</button>
-        <button class="chipbtn" type="button">Jeg har søgt nr. 2</button>
-      </div></div>
-      <div><h3>Hjælp til en stilling</h3><div class="chips">
-        <button class="chipbtn" type="button">Jeg overvejer nr. 5</button>
-        <button class="chipbtn" type="button">Skriv et CV til nr. 5</button>
-        <button class="chipbtn" type="button">Lav et udkast til ansøgning til nr. 5</button>
-      </div></div>
-      <div><h3>Rapport og profil</h3><div class="chips">
-        <button class="chipbtn" type="button">Dagens jobrapport</button>
-        <button class="chipbtn" type="button">Vis mit profilkort</button>
-      </div></div>
-      <div><h3>Hver 14. dag</h3><div class="chips">
-        <button class="chipbtn" type="button">Lav flyttepakke</button>
-      </div><p class="lead" style="font-size:14px;margin-top:8px">Lange chats bliver glemsomme. Start en ny chat med flyttepakken, upload dine CV'er igen, og planlæg kørslen på ny.</p></div>
     </div>
   </div>
 </section>
@@ -483,35 +266,23 @@ Start nu med Trin 1.</textarea>
   </div>
 </section>
 
+<section id="jobrapporten">
+  <div class="wrap">
+    <div class="more">
+      <div><p class="eyebrow">Trin 1 · findes nu · gratis</p><h2>Jobrapporten</h2>
+        <p class="lead">En daglig rapport i din egen ChatGPT eller Claude. Den finder, scorer og forklarer de opslag, der passer til dig.</p>
+        <p class="lead" style="margin-top:8px;font-size:15px">Kræver et betalt abonnement på ChatGPT eller Claude, fordi rapporten skal kunne køre på et fast tidspunkt. Opsætning: 20–30 minutter.</p></div>
+      <a class="btn solid" href="jobrapport.html" data-count="teaser-jobrapport">Sæt jobrapporten op</a>
+    </div>
+  </div>
+</section>
+
 <section id="vaerktoej">
   <div class="wrap">
     <div class="more">
       <div><p class="eyebrow">Gratis</p><h2>Flere prompts til jobsøgning</h2>
         <p class="lead">Seks prompts til hele jobsøgningen: find stillinger, vurder dem, søg og følg op.</p></div>
       <a class="btn solid" href="prompts.html" data-count="forside-til-prompts">Se alle prompts</a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="two">
-      <div class="box">
-        <h3>Før du starter: dine data</h3>
-        <ul>
-          <li>Fjern CPR-nummer, adresse og andre følsomme oplysninger fra dine dokumenter.</li>
-          <li>Overvej at slå træning på dine samtaler fra i dit AI-værktøjs indstillinger for privatliv.</li>
-          <li>Dine oplysninger ligger kun i din egen chat. Jeg ser dem ikke.</li>
-        </ul>
-      </div>
-      <div class="box warn">
-        <h3>Vær opmærksom på</h3>
-        <ul>
-          <li>AI kan overse stillinger eller tage fejl af frister. Tjek altid fristen i selve opslaget.</li>
-          <li>Scoren er et forslag. Din feedback gør den bedre.</li>
-          <li>Læs altid CV- og ansøgningsudkast grundigt igennem, før du sender dem.</li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -541,15 +312,21 @@ Start nu med Trin 1.</textarea>
   <p class="fdmeta">Det tager under et minut. Jeg bruger kun dine oplysninger til at kontakte dig om arbejdsbordet. <a href="privatliv.html">Sådan behandler jeg dine data</a>.</p>
   <div class="ctas"><a class="btn solid" id="waitlistBtn" href="" target="_blank" rel="noopener" data-count="venteliste-aabnet" hidden>Skriv mig op</a>
   <span class="fdmeta" id="waitlistNote">Ventelisten åbner om kort tid.</span></div>
-  <p class="fdmeta" style="margin-top:14px">Indtil da kan du bruge <a href="#prompt" id="fdPrompt">den gratis jobrapport</a> i din egen ChatGPT eller Claude.</p>
+  <p class="fdmeta" style="margin-top:14px">Indtil da kan du bruge <a href="jobrapport.html#prompt" id="fdPrompt">den gratis jobrapport</a> i din egen ChatGPT eller Claude.</p>
 </dialog>
 
 <footer class="foot"><div class="in"><span>Bygget af <a href="https://www.linkedin.com/in/petersonderskov" target="_blank" rel="noopener" data-count="linkedin-bund">Peter</a>, til min egen jobsøgning</span><span>Funktioner i ChatGPT og Claude kan ændre sig · <a href="privatliv.html">Privatliv</a></span></div></footer>
 
 <script>
-// ---- Indstillinger: udfyld, når du har dem ----
-var VENTELISTE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc7TEZc-fDfzj8xe3jFj34gz5QL2TZ9JMcU6Ehl7ZisgF-Cgw/viewform";   // Google-formularen til ventelisten, fx "https://forms.gle/..."
-var SNAK_URL = "https://forms.gle/sQ59zSkdE2tC39Fy8";  // tilmelding til en snak (fra piloten)
+// ---- A/B-test: PRIMÆRE hændelser i GoatCounter (sammenlign pr. variant, fx -a og -b) ----
+//   klik-proev-arbejdsbordet-hero-<v> + klik-proev-arbejdsbordet-video-<v>   (klik på "Prøv arbejdsbordet")
+//   klik-venteliste-aabnet-<v>                                               (åbner ventelisten fra dialogen)
+//   klik-snak-<v>                                                            ("Skriv dig op til en snak")
+// SEKUNDÆRE: klik-hero-*-<v> (knapperne i toppen), klik-teaser-jobrapport-<v>, klik-forside-til-prompts-<v>,
+//   og kopier-prompt på jobrapport.html. Besøg tælles som /variant-a og /variant-b.
+// ---- Formularer: sættes i toppen af build_site.py (FORMULAR_VENTELISTE, FORMULAR_SNAK) ----
+var VENTELISTE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc7TEZc-fDfzj8xe3jFj34gz5QL2TZ9JMcU6Ehl7ZisgF-Cgw/viewform";
+var SNAK_URL = "https://forms.gle/sQ59zSkdE2tC39Fy8";
 var VIDEO_KLAR = true;     // sæt til true, når demo.mp4 og demo-forside.png er uploadet
 // -----------------------------------------------
 function taelKlik(navn) {  // GoatCounter tæller klik uden cookies, med varianten bagpå (fx klik-kopier-prompt-a)
@@ -562,19 +339,6 @@ function taelKlik(navn) {  // GoatCounter tæller klik uden cookies, med variant
 })(0);
 (function () {
   function flash(el, text) { el.textContent = text; setTimeout(function () { el.textContent = ''; }, 2500); }
-  var ta = document.getElementById('promptText');
-  var status = document.getElementById('promptStatus');
-  document.getElementById('copyPrompt').addEventListener('click', function () {
-    var p = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(ta.value) : Promise.reject();
-    p.then(function () { flash(status, 'Kopieret – sæt den ind i en ny chat'); })
-     .catch(function () { ta.focus(); ta.select(); flash(status, 'Markeret – tryk Cmd/Ctrl+C'); });
-  });
-  document.querySelectorAll('.chipbtn').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var done = function () { b.classList.add('copied'); setTimeout(function () { b.classList.remove('copied'); }, 1200); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(b.textContent).then(done).catch(function () {});
-    });
-  });
   document.getElementById('signupBtn').setAttribute('href', SNAK_URL);
   var dlg = document.getElementById('fakedoor');
   var wl = document.getElementById('waitlistBtn');
@@ -584,7 +348,6 @@ function taelKlik(navn) {  // GoatCounter tæller klik uden cookies, med variant
   });
   document.getElementById('fdPrompt').addEventListener('click', function () { dlg.close && dlg.close(); });
   document.querySelectorAll('[data-count]').forEach(function (a) { a.addEventListener('click', function () { taelKlik(a.dataset.count); }); });
-  document.getElementById('copyPrompt').addEventListener('click', function () { taelKlik('kopier-prompt'); });
   if (VIDEO_KLAR) { document.getElementById('demoVideo').hidden = false; document.getElementById('videoPh').hidden = true; }
   var btn = document.getElementById('signupBtn');
   if (/^https:\/\//.test(btn.getAttribute('href'))) { btn.hidden = false; document.getElementById('signupNote').textContent = 'Det tager under et minut.'; }
