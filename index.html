@@ -127,6 +127,8 @@ section + section { border-top: 1px solid var(--line); }
 .today h3 { font-size: 20px; }
 .today p { color: var(--muted); font-size: 15.5px; }
 .today a { font-weight: 600; font-size: 15px; margin-top: 4px; }
+.more { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; border-radius: 18px; padding: 28px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.more h2 { margin: 6px 0 8px; }
 .tool { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 .tool .top { padding: 20px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; }
 .tool details { border-top: 1px solid var(--line); }
@@ -174,7 +176,7 @@ footer { padding-block: 28px 40px; font-size: 13px; color: var(--muted); }
 
 </head>
 <body>
-<header class="site"><div class="in"><a class="brand" href="#" aria-label="Jobsigte – til toppen"><svg viewBox="0 0 140 60" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M4 9H28C54 9 64 30 102 30"/><path d="M4 51H28C54 51 64 30 102 30"/><path d="M4 30H118"/></g><circle cx="127" cy="30" r="12" fill="#7FE0B8"/></svg><span>Jobsigte</span></a><nav aria-label="Hovedmenu"><ul class="tabs"><li><a href="#jobrapporten">Jobrapporten</a></li><li><a href="#arbejdsbordet">Arbejdsbordet</a></li><li><a href="#prompt">Prompten</a></li></ul></nav></div></header>
+<header class="site"><div class="in"><a class="brand" href="#" aria-label="Jobsigte – til toppen"><svg viewBox="0 0 140 60" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M4 9H28C54 9 64 30 102 30"/><path d="M4 51H28C54 51 64 30 102 30"/><path d="M4 30H118"/></g><circle cx="127" cy="30" r="12" fill="#7FE0B8"/></svg><span>Jobsigte</span></a><nav aria-label="Hovedmenu"><ul class="tabs"><li><a href="#jobrapporten">Jobrapporten</a></li><li><a href="#arbejdsbordet">Arbejdsbordet</a></li><li><a href="prompts.html">Prompts</a></li></ul></nav></div></header>
 <header class="hero">
   <div class="wrap">
     <div>
@@ -483,32 +485,10 @@ Start nu med Trin 1.</textarea>
 
 <section id="vaerktoej">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Ekstra værktøj · gratis</p>
-      <h2>Match-analyse af et enkelt opslag</h2>
-      <p class="lead">Brug den, når du overvejer en bestemt stilling. Den finder de fem vigtigste krav og holder dem op mod dit CV. Den nævner hullerne ærligt og foreslår vinklen til ansøgningen.</p>
-    </div>
-    <div class="tool">
-      <div class="top"><span class="lead" style="font-size:14px">Indsæt opslaget og dit CV nederst i prompten</span>
-        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-          <span class="status" id="matchStatus" role="status"></span>
-          <button class="btn solid" id="copyMatch" type="button" data-count="kopier-match-analyse">Kopiér prompten</button>
-        </div></div>
-      <details><summary>Vis prompten</summary><pre id="matchText">Du hjælper mig med at vurdere, om jeg skal søge en stilling. Jeg indsætter jobopslaget og mit CV nederst.
-
-1. Find de 5 vigtigste krav i opslaget i prioriteret rækkefølge. Skeln mellem krav og ønsker.
-2. Find for hvert krav konkret bevis i mit CV: hvad jeg har gjort, og hvad det førte til. Citér kort. Sig det, hvis beviset er svagt.
-3. Nævn hullerne: krav, jeg ikke kan dokumentere. Foreslå, hvordan jeg ærligt kan tale om dem.
-4. Giv din anbefaling: søg eller søg ikke, og hvorfor, i 2–3 sætninger.
-5. Hvis du anbefaler at søge: Foreslå vinklen, dvs. de 2–3 eksempler fra mit CV, der bedst rammer virksomhedens vigtigste behov.
-
-Regler: Brug kun fakta fra mit CV. Opfind aldrig resultater, tal eller erfaring. Spørg mig, hvis noget er uklart.
-
-JOBOPSLAG:
-[indsæt opslaget her]
-
-MIT CV:
-[indsæt dit CV her]</pre></details>
+    <div class="more">
+      <div><p class="eyebrow">Gratis</p><h2>Flere prompts til jobsøgning</h2>
+        <p class="lead">Seks prompts til hele jobsøgningen: find stillinger, vurder dem, søg og følg op.</p></div>
+      <a class="btn solid" href="prompts.html" data-count="forside-til-prompts">Se alle prompts</a>
     </div>
   </div>
 </section>
@@ -605,13 +585,6 @@ function taelKlik(navn) {  // GoatCounter tæller klik uden cookies, med variant
   document.getElementById('fdPrompt').addEventListener('click', function () { dlg.close && dlg.close(); });
   document.querySelectorAll('[data-count]').forEach(function (a) { a.addEventListener('click', function () { taelKlik(a.dataset.count); }); });
   document.getElementById('copyPrompt').addEventListener('click', function () { taelKlik('kopier-prompt'); });
-  var mt = document.getElementById('matchText'), ms = document.getElementById('matchStatus');
-  document.getElementById('copyMatch').addEventListener('click', function () {
-    var p = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(mt.textContent) : Promise.reject();
-    p.then(function () { flash(ms, 'Kopieret – sæt den ind i en ny chat'); }).catch(function () {
-      mt.closest('details').open = true; var r = document.createRange(); r.selectNodeContents(mt);
-      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); flash(ms, 'Markeret – tryk Cmd/Ctrl+C'); });
-  });
   if (VIDEO_KLAR) { document.getElementById('demoVideo').hidden = false; document.getElementById('videoPh').hidden = true; }
   var btn = document.getElementById('signupBtn');
   if (/^https:\/\//.test(btn.getAttribute('href'))) { btn.hidden = false; document.getElementById('signupNote').textContent = 'Det tager under et minut.'; }
